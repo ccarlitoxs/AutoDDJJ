@@ -1,0 +1,17 @@
+# Ignore tests:
+tests
+*.test.ts
+
+# Ignore node_modules:
+node_modules
+
+# Ignore swagger:
+swagger
+
+# Ignore type definitions
+src/types
+
+# Ignore dist folder
+dist
+
+client
