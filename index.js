@@ -13,10 +13,10 @@ dotenv.config({path: 'entorno.env'});
 const app = express();
 app.use(morgan('dev'));
 
-// app.use(express.static(path.resolve() + '\\client\\build'));
-app.use(express.static(path.join(__dirname, './client/build')));
 console.log('ruta1',path.resolve() + '\\client\\build');
-console.log('ruta2',path.join(__dirname, './client/build'));
+
+app.use(express.static(path.resolve() + '\\client\\build'));
+
 
 const whitelist = [
   // process.env.BACKEND_URL_LOCAL,
