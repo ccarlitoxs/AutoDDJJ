@@ -3,7 +3,7 @@ import axios from 'axios';
 export const postDDJJ = async (datos) => {
   try {
     const { data } = await axios.post(
-      `https://autoddjj.herokuapp.com/api/ddjj`,
+      `/api/ddjj`,
       datos
     );
     return data;
@@ -16,7 +16,7 @@ export const postDDJJ = async (datos) => {
 export const deleteQR = async () => {
   try {
     const { data } = await axios.delete(
-      `https://autoddjj.herokuapp.com/api/deleteqr`,
+      `/api/deleteqr`,
     );
     return data;
   } catch (error) {
