@@ -42,7 +42,7 @@ const corsOptions ={
 app.use(cors());
 
 //Includes Contest-Security-Policy, X-Content-Type-optiones, X-XSS-Protection, Strict-Trnasport-Security
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }));
+// app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }));
 
 //Habilitar express.json
 app.use(express.json({ extended:true }));
