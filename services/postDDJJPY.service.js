@@ -16,6 +16,7 @@ const postDDJJPYService = async (datos) => {
     headers,
     data: dataPY,
     httpsAgent: new https.Agent({
+      keepAlive: true,
       rejectUnauthorized: false,
     }),
   }).catch((err) => {
