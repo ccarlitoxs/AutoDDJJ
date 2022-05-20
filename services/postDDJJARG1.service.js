@@ -20,8 +20,6 @@ const postDDJJARG1Service = async (datos) => {
     throw err;
   });
 
-  console.log('responseService',response)
-
   return response.data;
 };
 
