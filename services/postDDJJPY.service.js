@@ -8,8 +8,8 @@ const postDDJJPYService = async (datos) => {
 
   console.log(dataPY);
 
-  // const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/ajax/crud/`;
-  const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/aja`;
+  const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/ajax/crud/`;
+  // const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/aja`;
 
   const headers = headerConfig('PY');
 

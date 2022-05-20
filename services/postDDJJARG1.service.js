@@ -8,8 +8,8 @@ const postDDJJARG1Service = async (datos) => {
 
   console.log(dataARG);
 
-  // const urlPost = `${process.env.AUTORITY_ARG_SERVER}/app/enviarMail.php`;
-  const urlPost = `${process.env.AUTORITY_ARG_SERVER}/appa`;
+  const urlPost = `${process.env.AUTORITY_ARG_SERVER}/app/enviarMail.php`;
+  // const urlPost = `${process.env.AUTORITY_ARG_SERVER}/appa`;
 
   const headers = headerConfig('ARG');
 
