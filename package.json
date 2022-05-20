@@ -6,6 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node ./index.js",
     "server": "node ./index.js",
     "dev": "nodemon ./index.js",
     "build": "cd client && npm install && npm run build",
