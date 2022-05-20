@@ -1,5 +1,5 @@
 import axios from 'axios';
-import https from 'https';
+// import https from 'https';
 import url from 'url';
 import headerConfig from '../config/headerConfig.js';
 
@@ -13,20 +13,17 @@ const postDDJJPYService = async (datos) => {
 
   const headers = headerConfig('PY');
 
-  const response = axios({
+  const { data } = axios({
     method: 'post',
     url: urlPost,
     headers,
     data: dataPY,
-    httpsAgent: new https.Agent({
-      rejectUnauthorized: false,
-    }),
   }).catch((err) => {
     err.origin = '';
     throw err;
   });
 
-  return response;
+  return data;
 };
 
 export default postDDJJPYService;

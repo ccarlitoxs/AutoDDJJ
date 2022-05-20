@@ -6,12 +6,11 @@ import path from 'path';
 import fs from 'fs';
 // import { downloadQR } from '../utils/functions/downloadQR.js';
 
-export const postDDJJ = async (req, res) => {
+export const postDDJJPY = async (req, res) => {
   console.log('BODY', req.body);
   const {
     razonsocial,
     nombreCortoTransporte,
-    emailEmpresa,
     telEmpresa,
     telDueñoEmpresa,
     fechaPartida,
@@ -23,7 +22,6 @@ export const postDDJJ = async (req, res) => {
   const {
     apellido,
     nombre,
-    fechaEmision,
     dni,
     sexo,
     edad,
@@ -209,6 +207,30 @@ export const postDDJJ = async (req, res) => {
     'Viajes[0][FechaOut]': moment(fechaPartida).format('DD/MM/YYYY'),
   };
 
+  try {
+    const resPY = await postDDJJPYService(PY);
+
+    console.log('resPY', resPY); // .reason.response.status o data  
+  
+    return res.json({msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.codigo}.png`});
+  } catch (error) {
+    res.status(400).json({status: 400, msg: 'Fallo solicitud Paraguay'})
+    console.log(error)
+  }
+
+};
+
+export const postDDJJArg1 = async (req, res) => {
+  console.log('BODY', req.body);
+  const {
+    emailEmpresa,
+  } = req.body.empresa;
+  const {
+    fechaEmision,
+    dni,
+    sexo,
+  } = req.body.pasajero;
+
   const ARG1 = {
     idioma: 'spanish',
     pais: 'ARG##ARGENTINA',
@@ -218,35 +240,14 @@ export const postDDJJ = async (req, res) => {
     mail: emailEmpresa,
   };
 
-  const promises = [postDDJJPYService(PY), postDDJJARG1Service(ARG1)];
-
   try {
-    const [resPY, resArg1] = await Promise.allSettled(promises);
+    const resArg1 = await postDDJJARG1Service(ARG1);
 
-    console.log('resPY', resPY); // .reason.response.status o data
     console.log('resArg1', resArg1); // .value.data
-
-    const response = {
-      resPY: null,
-      resArg1: null,
-    }
-
-    if (resPY.status === 'fulfilled') {
-      // downloadQR(`${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.value.data.codigo}.png`,dni,apellido,nombre);
-      response.resPY = {status: 200, msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.value.data.codigo}.png`}
-    } else {
-      response.resPY = {status: 400, msg: 'Fallo solicitud Paraguay'}
-    }
-
-    if (resArg1.status === 'fulfilled') {
-      response.resPY = {status: 200, msg: 'Solicitud correcta a Argentina Paso 1'}
-    } else {
-      response.resArg1 = {status: 400, msg: 'Fallo solicitud Argentina Paso 1'}
-    }
   
-  
-    return res.json(response);
+    return res.json({msg: 'Solicitud correcta a Argentina Paso 1'});
   } catch (error) {
+    res.status(400).json({status: 400, msg: 'Fallo solicitud Argentina Paso 1'})
     console.log(error)
   }
 
