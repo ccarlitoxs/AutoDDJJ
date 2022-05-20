@@ -210,9 +210,9 @@ export const postDDJJPY = async (req, res) => {
   try {
     const resPY = await postDDJJPYService(PY);
 
-    console.log('resPY', resPY); // .reason.response.status o data  
+    console.log('resPY', resPY); 
   
-    return res.json({msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.codigo}.png`});
+    return res.json({msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY?.codigo}.png`});
   } catch (error) {
     res.status(400).json({status: 400, msg: 'Fallo solicitud Paraguay'})
     console.log(error)
@@ -221,7 +221,6 @@ export const postDDJJPY = async (req, res) => {
 };
 
 export const postDDJJArg1 = async (req, res) => {
-  console.log('BODY', req.body);
   const {
     emailEmpresa,
   } = req.body.empresa;
@@ -243,7 +242,7 @@ export const postDDJJArg1 = async (req, res) => {
   try {
     const resArg1 = await postDDJJARG1Service(ARG1);
 
-    console.log('resArg1', resArg1); // .value.data
+    console.log('resArg1', resArg1);
   
     return res.json({msg: 'Solicitud correcta a Argentina Paso 1'});
   } catch (error) {
