@@ -4,7 +4,7 @@ import moment from 'moment';
 import Archiver from 'archiver';
 import path from 'path';
 import fs from 'fs';
-import { downloadQR } from '../utils/functions/downloadQR.js';
+// import { downloadQR } from '../utils/functions/downloadQR.js';
 
 export const postDDJJ = async (req, res) => {
   console.log('BODY', req.body);
@@ -228,12 +228,12 @@ export const postDDJJ = async (req, res) => {
 
     const response = {
       resPY: null,
-      resArg1: null
+      resArg1: null,
     }
 
     if (resPY.status === 'fulfilled') {
-      downloadQR(`${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.value.data.codigo}.png`,dni,apellido,nombre);
-      response.resPY = {status: 200, msg: 'Solicitud correcta a Paraguay'}
+      // downloadQR(`${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.value.data.codigo}.png`,dni,apellido,nombre);
+      response.resPY = {status: 200, msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY.value.data.codigo}.png`}
     } else {
       response.resPY = {status: 400, msg: 'Fallo solicitud Paraguay'}
     }
