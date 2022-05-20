@@ -48,7 +48,7 @@ app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }));
 app.use(express.json({ extended:true }));
 
 // Rutas
-app.use('/',router);
+app.use('/api',router);
 
 //Definir la pagina principal
 app.get('*', function (req, res) {

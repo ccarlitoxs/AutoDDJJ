@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 const Descargar = () => {
   const saveFile = () => {
     saveAs(
-      `${process.env.REACT_APP_BACKEND_SERVER}/downloadqr`,
+      `https://autoddjj.herokuapp.com/api/downloadqr`,
       "QR PY.zip"
     );
   };
