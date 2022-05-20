@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import path from 'path';
+// import path from 'path';
 import helmet from 'helmet';
 
 import router from './routes/routes.js';
@@ -13,9 +13,7 @@ dotenv.config({path: 'entorno.env'});
 const app = express();
 app.use(morgan('dev'));
 
-console.log('ruta1',path.resolve() + '\\client\\build');
-
-app.use(express.static(path.resolve() + '\\client\\build'));
+// app.use(express.static(path.resolve() + '\\client\\build'));
 
 
 const whitelist = [
@@ -41,8 +39,8 @@ const corsOptions ={
 };
 
 //Habilitar cors
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 //Includes Contest-Security-Policy, X-Content-Type-optiones, X-XSS-Protection, Strict-Trnasport-Security
 app.use(helmet());
@@ -53,10 +51,10 @@ app.use(express.json({ extended:true }));
 // Rutas
 app.use('/api',router);
 
-//Definir la pagina principal
-app.get('*', function (req, res) {
-  res.sendFile(path.resolve() + '/client/build/index.html');
-});
+// //Definir la pagina principal
+// app.get('*', function (req, res) {
+//   res.sendFile(path.resolve() + '/client/build/index.html');
+// });
 
 //Puerto de la app
 const host = process.env.HOST || '0.0.0.0';
