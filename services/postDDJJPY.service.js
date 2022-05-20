@@ -6,14 +6,11 @@ import headerConfig from '../config/headerConfig.js';
 const postDDJJPYService = async (datos) => {
   const dataPY = new url.URLSearchParams(datos);
 
-  console.log(dataPY);
-
   const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/ajax/crud/`;
-  // const urlPost = `${process.env.AUTORITY_PY_SERVER}/webdgvs/dataserver/aja`;
 
   const headers = headerConfig('PY');
 
-  const { data } = axios({
+  const { data } = await axios({
     method: 'post',
     url: urlPost,
     headers,

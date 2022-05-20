@@ -209,10 +209,15 @@ export const postDDJJPY = async (req, res) => {
 
   try {
     const resPY = await postDDJJPYService(PY);
+    // const resPY = {
+    //   respuesta: 'Agregado con exito',
+    //   qr: '<img class="img-thumbnail" id="ImagenQR" src="../../../views/paginas/viajeros_img/1129835/qrcode/1129835-20052022034242.png" />',
+    //   codigo: '1129835-20052022034242'
+    // };
 
-    console.log('resPY', resPY); 
+    const numberLink = resPY.qr.substring(resPY.qr.indexOf('viajeros_img')+13,resPY.qr.indexOf('/qrcode'));
   
-    return res.json({msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/1128751/qrcode/${resPY?.codigo}.png`});
+    return res.json({msg: 'Solicitud correcta a Paraguay', qrLink: `${process.env.AUTORITY_PY_SERVER}/views/paginas/viajeros_img/${numberLink}/qrcode/${resPY?.codigo}.png`});
   } catch (error) {
     res.status(400).json({status: 400, msg: 'Fallo solicitud Paraguay'})
     console.log(error)

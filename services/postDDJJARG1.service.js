@@ -7,11 +7,10 @@ const postDDJJARG1Service = async (datos) => {
   const dataARG = new url.URLSearchParams(datos);
   
   const urlPost = `${process.env.AUTORITY_ARG_SERVER}/app/enviarMail.php`;
-  // const urlPost = `${process.env.AUTORITY_ARG_SERVER}/appa`;
 
   const headers = headerConfig('ARG');
 
-  const { data } = axios({
+  const response = await axios({
     method: 'post',
     url: urlPost,
     headers,
@@ -21,7 +20,9 @@ const postDDJJARG1Service = async (datos) => {
     throw err;
   });
 
-  return data;
+  console.log('responseService',response)
+
+  return response.data;
 };
 
 export default postDDJJARG1Service;
