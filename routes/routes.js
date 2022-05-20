@@ -1,11 +1,17 @@
 import express from 'express';
 const router = new express.Router();
 
-import { readDNIQR } from '../controllers/controller.js';
-// import {  } from '../utils/functions/middlewares.js';
+import {
+  postDDJJ,
+  downloadQRFolder,
+  deleteQRs,
+} from '../controllers/controller.js';
+import validateData from '../middlewares/validateData.js';
 
-router.get('/read',
-    readDNIQR
-);
+router.post('/ddjj', validateData, postDDJJ);
+
+router.get('/downloadqr', downloadQRFolder);
+
+router.delete('/deleteqr', deleteQRs);
 
 export default router;
